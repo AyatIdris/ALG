@@ -63,3 +63,32 @@ var URLify = function(str,len) {
 }
 
 console.log(URLify("Mr John Smith    ", 13));
+
+var isPalindromePermutation = function(str) {
+ var hashmap = new Map();
+ var addCounts = 0;
+ str = str.split(' ').join('').toLowerCase();
+  
+ for(var i = 0; i <= str.length -1 ; i++)
+ {
+   var c = str[i]
+    if(hashmap.has(c))
+    {
+        hashmap.set(c,hashmap.get(c) + 1);
+    }
+    else{
+         hashmap.set(c,1);
+    }
+    
+    if(hashmap.get(c) % 2 == 1)
+    {
+      addCounts++;
+    }else
+    {
+      addCounts--;
+    }
+ }
+ return addCounts <= 1;
+}
+
+console.log(isPalindromePermutation("Tact Coa"));
