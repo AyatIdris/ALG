@@ -92,3 +92,46 @@ var isPalindromePermutation = function(str) {
 }
 
 console.log(isPalindromePermutation("Tact Coa"));
+
+//insert a character
+//remove a character
+//replace a character
+
+var OneAway = function(s1,s2) {
+  if(s1.length === 0 || s2.length === 0)
+  {
+    return false;
+  }
+
+  var longString = s1.length > s2.length ? s1 : s2;
+  var shortString = s1.length <= s2.length ? s1 : s2;
+  
+  var lindex = 0; 
+  var sindex = 0;
+  var edits  = 0;
+  
+  while(lindex < longString.length || sindex < shortString.length)
+  {
+    if(longString[lindex] !==  shortString[sindex])
+    {
+      edits++;
+      if (edits > 1)
+        return false;
+      if(longString[lindex + 1] ===  shortString[sindex])
+        lindex++;
+    }
+    lindex++;
+    sindex++;
+  } 
+ 
+  return true;
+}
+
+
+console.log(OneAway("pale", "ple"));
+console.log(OneAway("pales", "pale"));
+console.log(OneAway("pale", "bale"));
+console.log(OneAway("pale", "bake"));
+console.log(OneAway("pale", ""));
+console.log(OneAway("", "bake"));
+
