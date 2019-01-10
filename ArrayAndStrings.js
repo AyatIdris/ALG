@@ -135,3 +135,34 @@ console.log(OneAway("pale", "bake"));
 console.log(OneAway("pale", ""));
 console.log(OneAway("", "bake"));
 
+//input aabcccccaaa
+//output a2blc5a3
+
+var stringCompression = (str) =>
+{
+  var total = 1;
+  var comp = [];
+  
+  var i = 0;
+  var j = 1;
+  
+  while(i <= j && j <= str.length)
+  {
+    if(str.charAt(i) === str.charAt(j))
+    {
+      total++;
+      j++;
+    }
+    else{
+      comp.push(str.charAt(i));
+      comp.push(total);
+      total =1;
+      i = j;
+      j = j + 1;
+    }
+  }
+  return comp.join('');
+}
+
+console.log(stringCompression("aabcccccaaa"));
+console.log(stringCompression(""));
