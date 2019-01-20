@@ -166,3 +166,27 @@ var stringCompression = (str) =>
 
 console.log(stringCompression("aabcccccaaa"));
 console.log(stringCompression(""));
+
+var rotateMatrix = function(matrix)
+{
+  var level = 0;
+  var last = matrix.length  - 1;
+  var totNumberofElmement = matrix.length / 2;
+  while(level < totNumberofElmement){
+    for(var i= level; i < last; i++)
+    {
+   
+      [matrix[level][i],matrix[i][last]] = [matrix[i][last],matrix[level][i]];
+      [matrix[level][i],matrix[last][last - i + level]] =  [matrix[last][last - i + level],matrix[level][i]];
+      [matrix[level][i],matrix[last - i + level][level]] = [matrix[last - i + level][level],matrix[level][i]];
+
+    }
+    ++level;
+    --last;
+  }
+  return matrix;
+}
+
+var data = [[0,1,2,3,4],[5,6,7,8,9],[10,11,12,13,14],[15,16,17,18,19],[20,21,22,23,24]];
+console.log(rotateMatrix(data));
+
