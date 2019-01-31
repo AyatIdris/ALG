@@ -190,3 +190,49 @@ var rotateMatrix = function(matrix)
 var data = [[0,1,2,3,4],[5,6,7,8,9],[10,11,12,13,14],[15,16,17,18,19],[20,21,22,23,24]];
 console.log(rotateMatrix(data));
 
+var setZero = function(matrix,rows,cols){
+  for(var i=0; i < matrix.length; i++)
+  {
+    if(rows[i])
+    {
+      for(var j=0; j < matrix[0].length; j++)
+      {
+        matrix[i][j] = 0;
+      }
+    }
+    if(cols[i])
+    {
+      for(var jj=0; jj < matrix.length; jj++)
+      {
+        matrix[jj][i] = 0;
+      }
+    }
+  }
+  
+}
+
+var zeroMatrix = function(matrix)
+{
+   var rows = [matrix.length];
+   var cols = [matrix[0].length];
+   
+   for(var x=0; x < matrix.length;x++)
+   {
+      for(var y=0; y < matrix[0].length;y++)
+      {
+        if(matrix[x][y] === 0)
+         {
+           rows[x] = true;
+           cols[y] = true;
+         }
+      }
+   
+   }
+   
+  setZero(matrix,rows,cols);
+  return matrix;
+  
+}
+
+var data = [[0,1,2,3,4],[5,6,7,8,9],[10,11,0,13,14],[15,16,17,18,19],[20,21,22,23,24]];
+console.log(zeroMatrix(data));
