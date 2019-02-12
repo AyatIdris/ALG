@@ -56,3 +56,16 @@ llist.insertNode(9);
 console.log(llist);
 removeDups(llist.head);
 console.log(llist);
+
+
+const printKthToLast = function(head, k){
+  if(head === null)
+   return 0;
+   
+  var index = printKthToLast(head.next, k) + 1;
+  if(index === k)
+   console.log(k +"th to the last is ", head.data);
+  return index;
+};
+
+printKthToLast(llist.head,3);
