@@ -69,3 +69,30 @@ const printKthToLast = function(head, k){
 };
 
 printKthToLast(llist.head,3);
+
+const deleteMidNode = function(node){
+  
+  if(node === null || node.next === null)
+   return undefined;
+   
+  var fastPtr =  node;
+  var slowPtr = node;
+  var prev = null;
+
+   
+  while(fastPtr !== null && fastPtr.next.next !== null )
+  {
+    
+    fastPtr = fastPtr.next.next;
+    prev = slowPtr;
+    slowPtr = slowPtr.next;
+  }
+  
+  prev.next = slowPtr.next;
+  
+  return node;
+};
+
+deleteMidNode(llist.head);
+console.log(llist);
+
