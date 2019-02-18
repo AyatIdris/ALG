@@ -96,3 +96,39 @@ const deleteMidNode = function(node){
 deleteMidNode(llist.head);
 console.log(llist);
 
+const partition = function(node, p){
+        var newlist = new SinglyLinkedList();
+        newlist.head = node;
+        newlist.tail  =node;
+        
+        while(node !== null)
+        {
+          var next = node.next;
+          if(node.data < p)
+          {
+            node.next = newlist.head;
+            newlist.head = node;
+          }
+          else{
+           newlist.tail.next = node;
+            newlist.tail = node;
+          }
+          node = next;
+        }
+        newlist.tail.next = null;
+        return newlist;
+    }
+
+var llist = new SinglyLinkedList();
+llist.insertNode(3);
+llist.insertNode(5);
+llist.insertNode(8);
+llist.insertNode(5);
+llist.insertNode(10);
+llist.insertNode(2);
+llist.insertNode(1);
+
+//console.log(llist);
+console.log(partition(llist.head,5));
+//console.log(llist);
+
