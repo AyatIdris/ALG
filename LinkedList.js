@@ -177,3 +177,49 @@ llist2.insertNode(9);
 llist2.insertNode(2);
 
 console.log(sumList(llist1.head, llist2.head,0));
+
+const palindrome = function(node) {
+  if(node === null)
+  {
+    return;
+  }
+  
+  var hashMap = new Map();
+  var countsAdd = 0;
+  
+  while(node !== null)
+  {
+    var c = node.data;
+    if(hashMap.has(c))
+    {
+      hashMap.set(c,hashMap.get(c)+ 1);
+    }
+    else{
+      hashMap.set(c,1);
+    }
+    
+    if(hashMap.get(c) % 2 === 1)
+    {
+      countsAdd++;
+    }
+    else{
+      countsAdd--;
+    }
+    return countsAdd <= 1;
+  }
+  
+}
+
+
+
+var llist1 = new SinglyLinkedList();
+llist1.insertNode('T');
+llist1.insertNode('a');
+llist1.insertNode('c');
+llist1.insertNode(' ');
+llist1.insertNode('C');
+llist1.insertNode('o');
+llist1.insertNode('a');
+
+
+console.log(palindrome(llist1.head));
