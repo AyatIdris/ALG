@@ -223,3 +223,34 @@ llist1.insertNode('a');
 
 
 console.log(palindrome(llist1.head));
+
+
+var getIntersectionNode = function(headA, headB) {
+    if(headA === null || headB === null){
+    return null;
+  }
+  
+  var pointer1 = headA;
+  var pointer2 = headB;
+  
+  while(pointer1 !== null && pointer2 !== null && pointer1 !== pointer2)
+  {
+    pointer1 = pointer1.next;
+    pointer2 = pointer2.next;
+    
+    if(pointer1 === pointer2)
+    {
+      return pointer1;
+    }
+    if(pointer1 === null)
+    { 
+      pointer1 = headB;
+      
+    }
+    if(pointer2 === null)
+    { 
+      pointer2 = headA;
+    }
+  }
+  return pointer1;
+};
