@@ -254,3 +254,26 @@ var getIntersectionNode = function(headA, headB) {
   }
   return pointer1;
 };
+
+var detectCycle = function(head) {
+    
+    var slowPtr = head;
+    var fastPtr = head;
+    
+    while(fastPtr !== null && fastPtr.next !== null)
+    {
+        slowPtr = slowPtr.next;
+        fastPtr = fastPtr.next.next;
+        if(fastPtr === slowPtr)
+        {
+           return slowPtr;         
+        }
+    }
+    
+    if(fastPtr === null && fastPtr.next === null)
+    {
+        return null;
+    }
+    
+    
+};
