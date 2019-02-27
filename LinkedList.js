@@ -266,14 +266,21 @@ var detectCycle = function(head) {
         fastPtr = fastPtr.next.next;
         if(fastPtr === slowPtr)
         {
-           return slowPtr;         
+           break;         
         }
     }
     
-    if(fastPtr === null && fastPtr.next === null)
+    if(fastPtr === null || fastPtr.next === null)
     {
         return null;
     }
     
+    slowPtr = head;
+    while( fastPtr !== slowPtr)
+        {
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next;
+        }
+    return fastPtr;
     
 };
