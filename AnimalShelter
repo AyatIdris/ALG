@@ -1,0 +1,129 @@
+function Node(value) {
+  this.value = value;
+  this.next = null;
+}
+
+function LinkedList() {
+  this.head = null;
+  this.tail = null;
+}
+
+LinkedList.prototype.enqueue = function(node) {
+
+  if (this.head === null) {
+    this.head = node;
+  }
+  if (this.tail === null) {
+    this.tail = node;
+  } else {
+    this.tail.next = node;
+    this.tail = node;
+  }
+};
+
+LinkedList.prototype.dequeue = function() {
+  
+  if (this.head === null) {
+    return null
+  }
+  var frontNode = this.head;
+  this.head = this.head.next;
+  
+  return frontNode;
+};
+
+
+function AnimalQueue()
+{
+  this.catList = new LinkedList();
+  this.dogList = new LinkedList();
+}
+
+function Cat(value)
+{      
+  Node.call(this,value);
+  this.recieved = new Date();
+}
+
+function Dog(value)
+{
+  Node.call(this,value);
+  this.recieved = new Date();
+}
+
+AnimalQueue.prototype.enqueue = function(animal){
+
+  
+  if(animal instanceof Cat)
+  {
+    this.catList.enqueue(animal);
+  }
+  else if(animal instanceof Dog)
+  {
+    this.dogList.enqueue(animal);
+  }
+};
+
+AnimalQueue.prototype.dequeueDog = function(){
+ var adoptedDog = this.dogList.head;
+ if(adoptedDog === null)
+ {
+   return undefined;
+ }
+
+ this.dogList.head = this.dogList.head.next;
+ adoptedDog.next = null;
+ return adoptedDog.value;
+};
+
+AnimalQueue.prototype.dequeueCat = function(){
+ var adoptedCat = this.catList.head;
+ if(adoptedCat === null)
+ {
+   return undefined;
+ }
+ this.catList.head = this.catList.head.next;
+ adoptedCat.next = null;
+ return adoptedCat.value;
+};
+
+AnimalQueue.prototype.dequeueAny = function(){
+  var nextDog = this.dogList.head;
+  var nextCat = this.catList.head;
+  
+  if(nextDog && nextCat)
+  {
+
+    if(nextDog.recieved.getTime() <= nextCat.recieved.getTime())
+    {
+      return this.dequeueDog();
+  
+    }else{
+      
+       return this.dequeueCat();
+    }
+    
+  } else{
+    if(nextDog){
+      return  this.dequeueDog();
+    }else{
+      return this.dequeueCat();
+    }
+  }
+  return undefined;
+};
+
+
+var a = new AnimalQueue();
+a.enqueue(new Dog('Dixie'));
+a.enqueue(new Dog('Riba'));
+a.enqueue(new Cat('Bosy'));
+a.enqueue(new Dog('Raya'));
+a.enqueue(new Cat('Semsem'));
+a.enqueue(new Cat('Meshmesh'));
+
+
+console.log(a.dequeueAny(), 'dog');
+console.log(a.dequeueCat(), 'cat');
+console.log(a.dequeueAny(), 'dog');
+console.log(a.dequeueAny(), 'dog');
